@@ -6,7 +6,7 @@ import os
 import sys
 from collections import namedtuple
 
-Record = namedtuple('Record', 'date sourceIP user password clientVersion')
+Record = namedtuple('Record', 'id date sourceIP user password clientVersion')
 
 if __name__ == '__main__':
     if len(sys.argv) > 2:
@@ -16,7 +16,6 @@ if __name__ == '__main__':
         db_name = 'mydb.sqlite'
     else:
         db_name = sys.argv[1]
-    
     conn = sqlite3.connect(db_name)
     c = conn.cursor()
 
@@ -25,7 +24,8 @@ if __name__ == '__main__':
         user = base64.b64decode(r.user.encode())
         password = base64.b64decode(r.password.encode())
         clientVersion = base64.b64decode(r.clientVersion.encode())
-        print("{} | {:<30} | {:<30} | {:<40} | {:} ".format(
+        print("{} | {} | {:<30} | {:<30} | {:<40} | {:} ".format(
+            r.id,
             r.date,
             r.sourceIP,
             user.decode(),
