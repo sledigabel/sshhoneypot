@@ -24,7 +24,7 @@ if __name__ == '__main__':
         user = base64.b64decode(r.user.encode())
         password = base64.b64decode(r.password.encode())
         clientVersion = base64.b64decode(r.clientVersion.encode())
-        print("{} | {} | {:<30} | {:<30} | {:<40} | {:} ".format(
+        print("{:>5} | {} | {:<20} | {:<30} | {:<40} | {:} ".format(
             r.id,
             r.date,
             r.sourceIP,
