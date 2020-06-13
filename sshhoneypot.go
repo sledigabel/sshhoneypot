@@ -66,7 +66,7 @@ func DummyPasswordHandler(c ssh.Context, pass string) bool {
 func add_record(record *db_entry) {
 	db_lock.Lock()
 	defer db_lock.Unlock()
-	log.Println("Recording data: ", record.RemoteAddr, record.Username, record.Password, record.Clientversion)
+	// log.Println("Recording data: ", record.RemoteAddr, record.Username, record.Password, record.Clientversion)
 	insertStmt := fmt.Sprintf(`INSERT INTO sshconnections (date, source, user, password, client) VALUES (
 		datetime('now'), "%s", "%s", "%s", "%s"
 		);`, record.RemoteAddr, record.Username, record.Password, record.Clientversion)
